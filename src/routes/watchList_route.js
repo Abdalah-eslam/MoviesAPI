@@ -1,0 +1,12 @@
+import express from "express";
+import { AddMovieToWatchList ,deleteMovieFromWatchList ,UpdateWatchListItem } from "../controller/watchList_controller.js";
+import { AuthMiddleware } from "../middleware/AuthMiddleware.js";
+import cookieParser from "cookie-parser";
+const router = express.Router();
+router.use(cookieParser());
+router.use(AuthMiddleware);
+router.post("/", AddMovieToWatchList);
+router.delete("/:id", deleteMovieFromWatchList);
+router.put("/:id", UpdateWatchListItem);
+// router.get("/logout", logout);
+export default router;
