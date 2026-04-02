@@ -4,9 +4,11 @@ import { connectDB } from './config/dbConfig.js';
 import authRoute from './routes/Auth_Route.js';
 import moviesRoute from './routes/Movies_route.js';
 import watchListRoute from './routes/watchList_route.js';
+import cookieParser from "cookie-parser";
 config();
 connectDB();
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

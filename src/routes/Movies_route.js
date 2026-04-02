@@ -1,7 +1,9 @@
 import express from "express";
+import { GetMovies , GetMoviesWatchList } from "../controller/movies_controller.js";
+import { AuthMiddleware } from "../middleware/AuthMiddleware.js";
 const router = express.Router();
-router.get("/", (req, res) => {
-    res.json("Movies Route");
-});
+router.use(AuthMiddleware);
+router.get("/", GetMovies);
+router.get("/MyWatchList", GetMoviesWatchList);
 
 export default router;

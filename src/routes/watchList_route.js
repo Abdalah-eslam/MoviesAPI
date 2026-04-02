@@ -1,12 +1,11 @@
 import express from "express";
 import { AddMovieToWatchList ,deleteMovieFromWatchList ,UpdateWatchListItem } from "../controller/watchList_controller.js";
 import { AuthMiddleware } from "../middleware/AuthMiddleware.js";
-import cookieParser from "cookie-parser";
+import { validateRequestBody } from "../middleware/validateMiddleware.js";
+import { AddWatchListSchema , UpdateWatchListItemSchema } from "../validator/watchlistVlidator.js";
 const router = express.Router();
-router.use(cookieParser());
 router.use(AuthMiddleware);
-router.post("/", AddMovieToWatchList);
+router.post("/", validateRequestBody(AddWatchListSchema), AddMovieToWatchList);
 router.delete("/:id", deleteMovieFromWatchList);
-router.put("/:id", UpdateWatchListItem);
-// router.get("/logout", logout);
+router.put("/:id", validateRequestBody(UpdateWatchListItemSchema), UpdateWatchListItem);
 export default router;
