@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/Server.js",
   "scripts": {
+    "start": "node src/Server.js",
     "dev": "nodemon src/Server.js",
     "mockData": "node prisma/seed.js"
   },
